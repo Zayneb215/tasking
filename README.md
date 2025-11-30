@@ -115,11 +115,11 @@ This consistent visual language helps unify the UI.
 `app.routes.ts` defines the navigation flow:
 
 * `/login` → `<login-page/>`
-    ![alt text](docs/login-page.png)
+    ![alt text](./frontend/docs/images/login-page.png)
 * `/register` → `<register-page/>`
-![alt text](docs/register-page.png)
+![alt text](./frontend/docs/images/register-page.png)
 * `/home` → `<home-page/>`
-![alt text](docs/home-page.png)
+![alt text](./frontend//docs/images/home-page.png)
 
 
 The `<nav-link/>` components used in the `<nav-bar/>` trigger navigation using these routes.
