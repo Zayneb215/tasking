@@ -1,1 +1,7 @@
-<p>nav-bar works!</p>
+<nav>
+    @for (link of links; track link ){
+        <app-nav-link [onLinkClicked]="onLinkClicked.bind(this, link)" [linkName]="link"/>
+    } @empty {
+    <p>There is no Links in Your Navigation Bar</p>
+    }
+</nav>

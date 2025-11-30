@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 
 @Component({
   selector: 'app-nav-link',
@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './nav-link.component.scss'
 })
 export class NavLinkComponent {
+  linkName = input<string>("Link")
+  onLinkClicked = input<() => void>();
 
+  triggerOnLinkClicked() {
+      const fn = this.onLinkClicked();
+      if (fn) fn();
+    }
 }
