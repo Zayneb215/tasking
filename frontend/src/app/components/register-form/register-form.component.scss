@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 400px;   // form will never shrink smaller than this
+  flex-shrink: 0;     // <-- critical: prevents squeezing in flex containers
+}
+
+.card {
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}

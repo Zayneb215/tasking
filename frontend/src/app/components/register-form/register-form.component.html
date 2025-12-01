@@ -1,1 +1,26 @@
-<p>register-form works!</p>
+<div class="card shadow p-4 w-100">
+  <h3 class="mb-3 text-center">Register</h3>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input class="form-control" formControlName="username" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input class="form-control" formControlName="email" type="email" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input class="form-control" formControlName="password" type="password" />
+    </div>
+
+    <button class="btn btn-primary w-100" type="submit">
+      Register
+    </button>
+
+  </form>
+</div>

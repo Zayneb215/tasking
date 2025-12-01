@@ -1,9 +1,25 @@
-nav {
-    
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 1rem;
-    background-color: whitesmoke;
+:host {
+  display: flex;
+  justify-content: center;   // center horizontally
+  width: 100%;
+  position: fixed;           // stays on top
+  top: 20px;                 // floating distance from top
+  left: 0;
+  z-index: 1000;             // above everything
+}
+
+.navbar {
+  pointer-events: auto;      // actual navbar is interactive
+  display: flex;
+  gap: 12px;
+  padding: 12px 24px;
+
+  background: rgba(222, 34, 34, 0.18);  // glass bg
+  backdrop-filter: blur(14px);            // main glass effect
+  -webkit-backdrop-filter: blur(14px);
+
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);  // floating shadow
 }
