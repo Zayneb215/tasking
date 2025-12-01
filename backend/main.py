@@ -1,26 +1,33 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.database import Base, engine
+from app.routers import auth
+
+# Create tables
+Base.metadata.create_all(bind=engine)
+
 app = FastAPI()
-class User(BaseModel):
-    name: str
-    surname: str
- 
+
+# -------- CORS SETTINGS --------
+origins = [
+    "http://localhost:4200",   # Angular dev
+    "http://127.0.0.1:4200",
+    # "https://your-domain.com"  # Add production domain here
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],       # Allow all HTTP methods (POST, GET, etc.)
+    allow_headers=["*"],       # Allow all headers
+)
+# --------------------------------
+
+# Register routers
+app.include_router(auth.router)
+
 @app.get("/")
-async def root():
-    return {"message": "Hello this my API"}
-
- 
-users =[
-     User(name="zaineb",surname="bellil"),
- ]
-@app.get("/users")
-async def getusers():
-    return users
-
-
-@app.post("/users")
-async def createusers(user :User):
-    print(user.name)
-    print(user.surname)
-    users.append(user)
-    return user
+def root():
+    return {"message": "FastAPI is running 🚀"}
