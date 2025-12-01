@@ -1,6 +1,6 @@
 <nav>
-    @for (link of links; track link ){
-        <app-nav-link [onLinkClicked]="onLinkClicked.bind(this, link)" [linkName]="link"/>
+    @for (link of links; track link.route){
+        <app-nav-link [route]="link.route" [onLinkClicked]="onLinkClicked.bind(this, link.label)" [linkName]="link.label"/>
     } @empty {
     <p>There is no Links in Your Navigation Bar</p>
     }

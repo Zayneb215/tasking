@@ -1,4 +1,5 @@
 import { Component, Input, input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-link',
@@ -8,10 +9,12 @@ import { Component, Input, input } from '@angular/core';
 })
 export class NavLinkComponent {
   linkName = input<string>("Link")
+  route = input<string>("/")
   onLinkClicked = input<() => void>();
-
-  triggerOnLinkClicked() {
-      const fn = this.onLinkClicked();
-      if (fn) fn();
-    }
+  constructor (private router: Router) {}
+  triggerClick() {
+    const fn = this.onLinkClicked();
+    if (fn) fn();
+    this.router.navigate([this.route()]);
+  }
 }
