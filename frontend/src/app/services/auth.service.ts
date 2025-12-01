@@ -21,7 +21,7 @@ export interface RegisterResponse {
 export class AuthService {
 
   // TODO: change this to your real backend
-  private api = 'https://localhost:8000/api';
+  private api = 'http://127.0.0.1:8000/auth';
 
   constructor(private http: HttpClient) {}
 

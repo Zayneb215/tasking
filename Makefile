@@ -1,8 +1,18 @@
+.PHONY: install backend frontend start clean clean-py clean-node
+
 ### -----------------------------
 ###  VARIABLES
 ### -----------------------------
 BACKEND_DIR=backend
 FRONTEND_DIR=frontend
+
+
+### -----------------------------
+###  RUN BOTH (backend + frontend)
+### -----------------------------
+start:
+	make -j2 backend frontend
+
 
 
 ### -----------------------------
@@ -17,17 +27,11 @@ install:
 ###  RUN COMMANDS
 ### -----------------------------
 backend:
-	cd $(BACKEND_DIR) && uv run uvicorn main:app --reload
+	cd $(BACKEND_DIR) && uv run uvicorn src.main:app --reload
 
 frontend:
 	cd $(FRONTEND_DIR) && ng serve
 
-
-### -----------------------------
-###  RUN BOTH (backend + frontend)
-### -----------------------------
-start:
-	make -j2 backend frontend
 
 
 ### -----------------------------

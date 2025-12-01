@@ -1,133 +1,149 @@
-# Application Architecture Documentation
+# Makefile Documentation
 
-## Overview
+This documentation explains how to use the provided **Makefile** to manage both the backend (FastAPI) and frontend (Angular) projects.
 
-This document provides an overview of the application's structure and architecture. The application follows a component-based structure and uses dedicated pages and shared UI components to keep the code modular and maintainable.
+---
 
-## High-Level Structure
+## 📘 Overview
+
+The Makefile automates common tasks such as installing dependencies, running the development servers, and cleaning build artifacts.
+
+Project structure:
 
 ```
-src/
-└── app/
-    ├── components/
-    │   ├── login-form/
-    │   ├── nav-bar/
-    │   ├── nav-link/
-    │   └── register-form/
-    ├── pages/
-    │   ├── home-page/
-    │   ├── login-page/
-    │   └── register-page/
-    ├── app.config.ts
-    ├── app.html
-    ├── app.routes.ts
-    ├── app.scss
-    ├── app.spec.ts
-    └── app.ts
+project/
+ ├── backend/
+ ├── frontend/
+ └── Makefile
 ```
 
-## App Root (`<app-root>`)
+---
 
-The root component acts as the global container for the application. It hosts the navigation bar and the router outlet used to load pages.
+## 🧱 Makefile Contents
 
-* **app.html**: Defines the main layout including `<nav-bar/>` and the router outlet.
-* **app.ts**: Bootstraps the application.
-* **app.routes.ts**: Declares all routes for pages such as Login, Register, and Home.
+```
+BACKEND_DIR=backend
+FRONTEND_DIR=frontend
+
+install:
+	cd $(BACKEND_DIR) && uv sync
+	cd $(FRONTEND_DIR) && npm install
+
+backend:
+	cd $(BACKEND_DIR) && uv run uvicorn main:app --reload
+
+frontend:
+	cd $(FRONTEND_DIR) && ng serve
+
+start:
+	make -j2 backend frontend
+
+clean-py:
+	cd $(BACKEND_DIR) && find . -type d -name "__pycache__" -exec rm -r {} +
+
+clean-node:
+	cd $(FRONTEND_DIR) && rm -rf node_modules
+
+clean: clean-py clean-node
+```
 
 ---
 
-## Components
+## 🚀 Commands
 
-Reusable UI elements located in `app/components/`.
+### **Install dependencies**
 
-### 1. `nav-bar` Component
+Install backend and frontend dependencies in one step:
 
-The navigation bar displayed on all pages.
+```
+make install
+```
 
-* Contains instances of `<nav-link/>` for navigation.
-* Responsible for the top-level navigation layout.
+Runs:
 
-### 2. `nav-link` Component
-
-A simple component representing a button-style navigation link.
-
-* Used inside `<nav-bar/>`.
-* Handles active states and routing.
-
-### 3. `login-form` Component
-
-A standalone login form.
-
-* Fields: Email, Password
-* Submit button: "Se connecter"
-* Used inside the `<login-page/>`.
-
-### 4. `register-form` Component
-
-A standalone registration form.
-
-* Fields: Name, Email, Password
-* Submit button: "S'inscrire"
-* Used inside the `<register-page/>`.
+* `uv sync` in `backend/`
+* `npm install` in `frontend/`
 
 ---
 
-## Pages
+### **Run backend (FastAPI)**
 
-Pages act as containers for form components and other page-specific UI.
-Located in the directory: `app/pages/`.
+```
+make backend
+```
 
-### 1. `login-page`
+Starts FastAPI with auto-reload:
 
-* Displays the `<login-form/>` centered inside the page.
-* Injected into the DOM when navigating to `/login`.
-
-### 2. `register-page`
-
-* Displays the `<register-form/>`.
-* Route: `/register`.
-
-### 3. `home-page`
-
-* Displays the main home view.
-* Route: `/home`.
-* Currently mostly empty except navigation bar.
+* URL: [http://localhost:8000](http://localhost:8000)
 
 ---
 
-## UI Layout (Based on Provided Sketches)
+### **Run frontend (Angular)**
 
-Each page uses a large blue container where forms are centered. The navigation bar appears at the top in a pink container with yellow clickable buttons.
+```
+make frontend
+```
 
-### Common Layout Elements
+Starts Angular dev server:
 
-* **Blue background**: Main content area.
-* **Pink nav container**: Navigation bar.
-* **Green form container**: Login/Register form areas.
-* **Yellow buttons**: Navigation links & submit buttons.
-
-This consistent visual language helps unify the UI.
+* URL: [http://localhost:4200](http://localhost:4200)
 
 ---
 
-## Routing Architecture
+### **Run both frontend + backend together**
 
-`app.routes.ts` defines the navigation flow:
+```
+make start
+```
 
-* `/login` → `<login-page/>`
-    ![alt text](./frontend/docs/images/login-page.png)
-* `/register` → `<register-page/>`
-![alt text](./frontend/docs/images/register-page.png)
-* `/home` → `<home-page/>`
-![alt text](./frontend//docs/images/home-page.png)
-
-
-The `<nav-link/>` components used in the `<nav-bar/>` trigger navigation using these routes.
+Runs both servers in parallel (useful for development).
 
 ---
 
-## Summary
+### **Clean Python caches**
 
-This application is structured around reusable components and dedicated page containers. Navigation is centralized in the nav bar, and each page focuses solely on displaying the relevant content. Forms are encapsulated in reusable components allowing easy maintenance and future scalability.
+```
+make clean-py
+```
 
-This architecture promotes clarity, modularity, and ease of development.
+Removes all `__pycache__` folders in backend.
+
+---
+
+### **Clean Node modules**
+
+```
+make clean-node
+```
+
+Deletes `node_modules` in frontend.
+
+---
+
+### **Clean everything**
+
+```
+make clean
+```
+
+Runs both cleanup tasks.
+
+---
+
+## 📑 Summary Table
+
+| Command           | Description                             |
+| ----------------- | --------------------------------------- |
+| `make install`    | Install backend & frontend dependencies |
+| `make backend`    | Run backend FastAPI server              |
+| `make frontend`   | Run Angular dev server                  |
+| `make start`      | Run both backend + frontend             |
+| `make clean`      | Clean Python caches + node_modules      |
+| `make clean-py`   | Clean Python cache folders              |
+| `make clean-node` | Remove frontend node_modules            |
+
+---
+
+## Frontend Documentation (Local Project)
+
+If your repository contains a dedicated Angular documentation file, you can link to it here [Frontend](/frontend/docs/doc.md)

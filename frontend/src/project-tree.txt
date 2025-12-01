@@ -1,0 +1,51 @@
+.
+├── app
+│   ├── app.component.html
+│   ├── app.component.scss
+│   ├── app.component.spec.ts
+│   ├── app.component.ts
+│   ├── app.config.ts
+│   ├── app.routes.ts
+│   ├── components
+│   │   ├── login-form
+│   │   │   ├── login-form.component.html
+│   │   │   ├── login-form.component.scss
+│   │   │   ├── login-form.component.spec.ts
+│   │   │   └── login-form.component.ts
+│   │   ├── nav-bar
+│   │   │   ├── nav-bar.component.html
+│   │   │   ├── nav-bar.component.scss
+│   │   │   ├── nav-bar.component.spec.ts
+│   │   │   └── nav-bar.component.ts
+│   │   ├── nav-link
+│   │   │   ├── nav-link.component.html
+│   │   │   ├── nav-link.component.scss
+│   │   │   ├── nav-link.component.spec.ts
+│   │   │   └── nav-link.component.ts
+│   │   └── register-form
+│   │       ├── register-form.component.html
+│   │       ├── register-form.component.scss
+│   │       ├── register-form.component.spec.ts
+│   │       └── register-form.component.ts
+│   └── pages
+│       ├── home-page
+│       │   ├── home-page.component.html
+│       │   ├── home-page.component.scss
+│       │   ├── home-page.component.spec.ts
+│       │   └── home-page.component.ts
+│       ├── login-page
+│       │   ├── login-page.component.html
+│       │   ├── login-page.component.scss
+│       │   ├── login-page.component.spec.ts
+│       │   └── login-page.component.ts
+│       └── register-page
+│           ├── register-page.component.html
+│           ├── register-page.component.scss
+│           ├── register-page.component.spec.ts
+│           └── register-page.component.ts
+├── index.html
+├── main.ts
+├── proejct-tree.txt
+└── styles.scss
+
+11 directories, 38 files
