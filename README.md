@@ -145,5 +145,5 @@ Runs both cleanup tasks.
 ---
 
 ## Frontend Documentation (Local Project)
-
-If your repository contains a dedicated Angular documentation file, you can link to it here [Frontend](/frontend/docs/doc.md)
+- [Frontend](/frontend/docs/doc.md)
+- [Backend](/backend/docs/doc.md)
