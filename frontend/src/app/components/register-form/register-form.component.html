@@ -3,20 +3,58 @@
 
   <form [formGroup]="form" (ngSubmit)="submit()">
 
+    <!-- USERNAME -->
     <div class="mb-3">
       <label class="form-label">Nom</label>
-      <input class="form-control" formControlName="username" />
+      <input 
+        class="form-control" 
+        formControlName="username"
+        [class.is-invalid]="form.get('username')?.invalid && form.get('username')?.touched"
+      />
+
+      <!-- Validation Message -->
+      <div class="invalid-feedback" *ngIf="form.get('username')?.touched && form.get('username')?.invalid">
+        Le nom est obligatoire.
+      </div>
     </div>
 
+
+    <!-- EMAIL -->
     <div class="mb-3">
       <label class="form-label">Email</label>
-      <input class="form-control" formControlName="email" type="email" />
+      <input 
+        class="form-control" 
+        formControlName="email" 
+        type="email"
+        [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+      />
+
+      <!-- Validation Messages -->
+      <div class="invalid-feedback" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+        <span *ngIf="form.get('email')?.hasError('required')">L’email est obligatoire.</span>
+        <span *ngIf="form.get('email')?.hasError('email')">L’email n’est pas valide.</span>
+      </div>
     </div>
 
+
+    <!-- PASSWORD -->
     <div class="mb-3">
       <label class="form-label">Mot de Passe</label>
-      <input class="form-control" formControlName="password" type="password" />
+      <input 
+        class="form-control"
+        formControlName="password"
+        type="password"
+        [class.is-invalid]="form.get('password')?.invalid && form.get('password')?.touched"
+      />
+
+      <div class="invalid-feedback" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
+        <span *ngIf="form.get('password')?.hasError('required')">Le mot de passe est obligatoire.</span>
+        <span *ngIf="form.get('password')?.hasError('minlength')">
+          Le mot de passe doit contenir au moins 6 caractères.
+        </span>
+      </div>
     </div>
+
 
     <button class="btn btn-primary w-100" type="submit">
       S'inscrire

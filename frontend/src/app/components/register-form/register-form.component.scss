@@ -9,3 +9,11 @@
   border-radius: 14px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
+
+input.ng-invalid.ng-touched {
+  border-color: #dc3545 !important;  /* Bootstrap danger red */
+}
+
+input.ng-invalid.ng-touched:focus {
+  box-shadow: 0 0 4px rgba(220, 53, 69, 0.5);
+}
