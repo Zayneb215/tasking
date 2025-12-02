@@ -1,3 +1,17 @@
-<div class="home-page">
-  <app-user-card [user]="user"></app-user-card>
+<div class="container-fluid bg-white text-dark py-4 home-page">
+
+  <div class="home-page-content">
+
+    <!-- Sidebar -->
+    <div class="col-12 col-md-3">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <!-- Content -->
+    <div class="col-12 col-md-9">
+      <app-content-area></app-content-area>
+    </div>
+
+  </div>
+
 </div>

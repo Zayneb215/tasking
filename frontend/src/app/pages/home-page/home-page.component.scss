@@ -5,3 +5,10 @@
     height: 100vh;
     background-image: linear-gradient(to right top, #d16ba5, #c572b6, #b679c5, #a381d1, #8c89da, #7697e7, #5ca4f0, #3cb0f5, #00c5fc, #00d8fd, #2beaf8, #5ffbf1);
 }
+
+.home-page-content{
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
