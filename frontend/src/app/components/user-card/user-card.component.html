@@ -1,0 +1,24 @@
+<div class="card shadow-sm user-card">
+  <div class="card-body text-center">
+
+    <div class="avatar mb-3">
+      <i class="bi bi-person-circle icon"></i>
+    </div>
+
+    <h5 class="card-title mb-1">{{ user.username }}</h5>
+    <p class="card-text text-muted mb-2">{{ user.email }}</p>
+
+    <ul class="list-group text-start">
+      <li class="list-group-item">
+        <strong>ID:</strong> {{ user.id }}
+      </li>
+      <li class="list-group-item">
+        <strong>Email:</strong> {{ user.email }}
+      </li>
+      <li class="list-group-item">
+        <strong>Username:</strong> {{ user.username }}
+      </li>
+    </ul>
+
+  </div>
+</div>
