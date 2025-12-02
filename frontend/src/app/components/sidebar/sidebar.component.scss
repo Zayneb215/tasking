@@ -1,0 +1,26 @@
+.sidebar {
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    margin-right: 2rem;
+    background: rgba(255, 255, 255, 0.29);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.9px);
+    -webkit-backdrop-filter: blur(4.9px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: 
+      background 1s ease,
+      backdrop-filter 1s ease,
+      box-shadow 1s ease,
+      transform 1s ease;
+}
+
+.sidebar:hover {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+
+}
