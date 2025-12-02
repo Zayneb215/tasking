@@ -1,7 +1,23 @@
 <nav>
-    @for (link of links; track link.route){
-        <app-nav-link [route]="link.route" [onLinkClicked]="onLinkClicked.bind(this, link.label)" [linkName]="link.label"/>
-    } @empty {
-    <p>There is no Links in Your Navigation Bar</p>
+  <!-- If NOT authenticated -->
+  <ng-container *ngIf="!isLoggedIn; else loggedInBlock">
+    @for (link of loggedOutLinks; track link.route) {
+      <app-nav-link
+        [route]="link.route"
+        [onLinkClicked]="onLinkClicked.bind(this, link.label)"
+        [linkName]="link.label"
+      />
     }
+  </ng-container>
+
+  <!-- If authenticated -->
+  <ng-template #loggedInBlock>
+    @for (link of loggedInLinks; track link.route) {
+      <app-nav-link
+        [route]="link.route"
+        [onLinkClicked]="onLinkClicked.bind(this, link.label)"
+        [linkName]="link.label"
+      />
+    }
+  </ng-template>
 </nav>

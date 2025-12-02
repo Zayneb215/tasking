@@ -1,16 +1,34 @@
 import { Component } from '@angular/core';
 import { NavLinkComponent } from '../nav-link/nav-link.component';
-import { routes } from '../../app.routes';
+import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [NavLinkComponent],
+  standalone: true,
+  imports: [NavLinkComponent,CommonModule],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
-  links = [{ label: "Connexion", route: "/connexion"}, {label : "Inscription", route : "/inscription"}, {label : "Acceuil", route : "/"}]
-  onLinkClicked (linkName : string) {
-    console.log(linkName + " is Clicked !")
+
+  loggedOutLinks = [
+    { label: "Connexion", route: "/connexion" },
+    { label: "Inscription", route: "/inscription" }
+  ];
+
+  loggedInLinks = [
+    { label: "Acceuil", route: "/" },
+    { label: "Logout", route: "/logout" }
+  ];
+
+  constructor(private auth: AuthService) {}
+
+  get isLoggedIn() {
+    return this.auth.isAuthenticated();
+  }
+
+  onLinkClicked(linkName: string) {
+    console.log(linkName + " is Clicked !");
   }
 }
