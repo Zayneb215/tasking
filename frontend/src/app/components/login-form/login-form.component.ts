@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -10,19 +12,32 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-  form! : FormGroup
-  constructor(private readonly fb: FormBuilder) {}
+  form!: FormGroup;
+
+  constructor(
+    private readonly fb: FormBuilder,
+    private auth: AuthService,     // <-- Inject AuthService
+    private router: Router         // <-- Inject Router
+  ) {}
 
   ngOnInit() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
-    
   }
+
   submit() {
     if (this.form.valid) {
-      console.log('Login:', this.form.value);
+      this.auth.login(this.form.value).subscribe({
+        next: () => {
+          // Redirect to home (Accueil)
+          this.router.navigate(['/']);
+        },
+        error: (err) => {
+          alert('Login failed: ' + (err.error?.detail || 'Unknown error'));
+        }
+      });
     }
   }
 }

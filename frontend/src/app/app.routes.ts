@@ -5,8 +5,8 @@ import { RegisterPageComponent } from "./pages/register-page/register-page.compo
 import { authGuard } from "./guards/auth.guard";
 
 export const routes: Routes = [
-  // { path: '', component: HomePageComponent, canActivate: [authGuard] },
-  { path: '', component: HomePageComponent},
+  { path: '', component: HomePageComponent, canActivate: [authGuard] },
+  // { path: '', component: HomePageComponent},
 
   { path: 'connexion', component: LoginPageComponent },
   { path: 'inscription', component: RegisterPageComponent },

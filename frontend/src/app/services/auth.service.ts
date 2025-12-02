@@ -12,8 +12,15 @@ export interface RegisterResponse {
   id: string;
   username: string;
   email: string;
-  token?: string;
 }
+
+export interface LoginResponse {
+  username: string;
+  email: string;
+  token: string;
+}
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +38,6 @@ export class AuthService {
   register(payload: RegisterPayload) {
     return this.http.post<RegisterResponse>(`${this.api}/register`, payload).pipe(
       map((res) => {
-        if (res.token) {
-          this.saveToken(res.token);
-        }
         return res;
       }),
       catchError((err) => throwError(() => err))
@@ -97,7 +101,7 @@ export class AuthService {
   // LOGOUT STATE
   // ------------------------------
   login(payload: { email: string; password: string }) {
-      return this.http.post<{ token: string }>(`${this.api}/login`, payload).pipe(
+      return this.http.post<LoginResponse>(`${this.api}/login`, payload).pipe(
         map((res) => {
           if (res.token) {
             this.saveToken(res.token);

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavLinkComponent {
   linkName = input<string>("Link")
-  route = input<string>("/")
+  route = input<string | undefined>("/")
   onLinkClicked = input<() => void>();
   constructor (private router: Router) {}
   triggerClick() {
