@@ -21,3 +21,14 @@ class LoginResponse(BaseModel):
     token: str
     username: str
     email: EmailStr
+
+
+class TodoCreate(BaseModel):
+    content: str
+
+class TodoResponse(BaseModel):
+    id: int
+    content: str
+
+    class Config:
+        from_attributes = True
