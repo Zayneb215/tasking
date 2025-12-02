@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TodoService, Todo } from '../../../services/todo.service';
+import { RawgService } from '../../../services/rawg.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -14,7 +15,7 @@ export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
   newTodo = '';
 
-  constructor(private todoService: TodoService) {}
+  constructor(private todoService: TodoService, private gamesService : RawgService) {}
 
   ngOnInit() {
     this.loadTodos();

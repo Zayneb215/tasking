@@ -13,10 +13,15 @@ import { ContentAreaComponent } from '../../components/content-area/content-area
 })
 export class HomePageComponent implements OnInit {
   user! : UserProfile
-
+  content = "Profile"
   constructor(private auth: AuthService) {}
   
   ngOnInit(): void {
     this.user = this.auth.getProfile();
+  }
+
+  setContent(button_name : string) {
+    this.content = button_name
+    console.log("Content : ",this.content  )
   }
 }

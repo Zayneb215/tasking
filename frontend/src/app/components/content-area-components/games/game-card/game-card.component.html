@@ -1,0 +1,23 @@
+<div class="card h-100 shadow-sm glass-card border-0">
+
+  <img *ngIf="game?.background_image"
+       [src]="game.background_image"
+       class="card-img-top"
+       alt="{{ game.name }}" />
+
+  <div class="card-body">
+
+    <h5 class="card-title">{{ game.name }}</h5>
+
+    <p class="card-text mb-1">
+      <strong>Released:</strong> {{ game.released }}
+    </p>
+
+    <p class="card-text">
+      <strong>Rating:</strong> ⭐ {{ game.rating }}
+    </p>
+
+  </div>
+  <button (click)="addGameToPlay()" class="btn btn-dark" > Add To Play</button>
+  
+</div>
